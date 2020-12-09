@@ -16,17 +16,23 @@ dag = DAG(
     default_args=default_dag_args
 )
 
-#extract_data = PythonOperator(
-#    task_id = "extract_data",
-#    bash_command = "echo python3 download-data.py",
-#    dag = dag
-#)  
+""" extract_data = PythonOperator(
+    task_id = "extract_data",
+    bash_command = "echo python3 download-data.py",
+    dag = dag
+)  
 
-#spark_submit = BashOperator(
-#    task_id = "spark_submit",
-#    bash_command = "echo spark-submit --deploy-mode cluster --master yarn --class autom.main spark.jar",
-#    dag = dag
-#)
+spark_submit = BashOperator(
+    task_id = "spark_submit",
+    bash_command = "echo spark-submit --deploy-mode cluster --master yarn --class autom.main spark.jar",
+    dag = dag
+)
+
+nougatine_stat = BashOperator(
+    task_id = "nougatine_stat",
+    bash_command = "echo ",
+    dag = dag
+) """
 
 task3 = BashOperator(
     task_id = "task3",
@@ -45,3 +51,4 @@ task1 = BashOperator(
 )
 
 task1 >> task2 >> task3
+#extract_data >> spark_submit
