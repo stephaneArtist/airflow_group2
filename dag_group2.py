@@ -4,6 +4,8 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime, timedelta
 
+#from download-data import main
+
 default_dag_args = {
     'owner': 'group2',
     'start_date': datetime.now(),
@@ -21,6 +23,11 @@ extract_data = BashOperator(
     bash_command = "python3 download-data.py",
     dag = dag
 )  
+""" extract_data = PythonOperator(
+    task_id = "extract_data",
+    python_callable = main,
+    dag = dag
+)  """ 
 
 spark_submit = BashOperator(
     task_id = "spark_submit",
