@@ -4,10 +4,13 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime, timedelta
 
+default_dag_args = {
+    'start_date': datetime.now()
+}
 dag = DAG(
-dag_id = "group2",
-start_date = "2020-12-09",
-schedule_interval='@daily')
+    dag_id='your_dag_name',
+    schedule_interval = timedelta(days=1),
+    default_args=default_dag_args)
 
 task1 = BashOperator(
 task_id = "task1",
