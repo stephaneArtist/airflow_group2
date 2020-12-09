@@ -9,7 +9,9 @@ default_dag_args = {
 }
 dag = DAG(
     dag_id='group2_dag',
+    owner = 'group2',
     schedule_interval = timedelta(days=1),
+    retries = 1,
     retry_delay = timedelta(minutes=1),
     default_args=default_dag_args)
 
