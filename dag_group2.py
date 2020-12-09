@@ -4,8 +4,6 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime, timedelta
 
-from download-data.py import my_python_function
-
 default_dag_args = {
     'owner': 'group2',
     'start_date': datetime.now(),
