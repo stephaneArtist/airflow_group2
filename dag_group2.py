@@ -5,14 +5,16 @@ from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime, timedelta
 
 default_dag_args = {
-    'start_date': datetime.now()
+    'owner': 'group2',
+    'start_date': datetime.now(),
+    'retries': 1,
+    'retry_delay': timedelta(minutes=1)
 }
 dag = DAG(
     dag_id='group2_dag',
     schedule_interval = timedelta(days=1),
-    retries = 1,
-    retry_delay = timedelta(minutes=1),
-    default_args=default_dag_args)
+    default_args=default_dag_args
+)
 
 #extract_data = PythonOperator(
 #    task_id = "extract_data",
