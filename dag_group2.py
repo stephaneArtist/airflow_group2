@@ -8,7 +8,7 @@ default_dag_args = {
     'start_date': datetime.now()
 }
 dag = DAG(
-    dag_id='your_dag_name',
+    dag_id='group2_dag',
     schedule_interval = timedelta(days=1),
     default_args=default_dag_args)
 
