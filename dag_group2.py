@@ -11,16 +11,17 @@ default_dag_args = {
     'start_date': datetime.now(),
     'retry_delay': timedelta(minutes=1)
 }
-with DAG(
+dag = DAG(
     dag_id='group2_dag',
     schedule_interval = timedelta(minutes=1),
     default_args=default_dag_args
-) as dag:
-operators
-    task1 = BashOperator(
-        task_id = "task1",
-        bash_command = "echo hello world"
-    )
+)
+
+task1 = BashOperator(
+    task_id = "task1",
+    bash_command = "echo hello world",
+    dag = dag
+)
 
 """ extract_data = BashOperator(
     task_id = "extract_data",
@@ -28,10 +29,11 @@ operators
     dag = dag
 )     """
 
-    spark_submit = BashOperator(
-        task_id = "spark_submit",
-        bash_command = "spark-submit --deploy-mode cluster --master yarn --class job.stat hdfs:///user/iabd2_group2/Stat.jar"
-    )
+spark_submit = BashOperator(
+    task_id = "spark_submit",
+    bash_command = "spark-submit --deploy-mode cluster --master yarn --class job.stat hdfs:///user/iabd2_group2/Stat.jar",
+    dag = dag
+)
 
 """ extract_data = PythonOperator(
     task_id = "extract_data",
@@ -52,4 +54,4 @@ task2 = BashOperator(
 
  """
 #task1 >> task2 >> task3
-    task1 >> spark_submit
+task1 >> spark_submit
