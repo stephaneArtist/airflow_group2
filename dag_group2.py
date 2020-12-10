@@ -24,15 +24,15 @@ task1 = BashOperator(
     dag = dag
 )
 
-extract_data = BashOperator(
+""" extract_data = BashOperator(
     task_id = "extract_data",
     bash_command = "python3 download-data.py",
     dag = dag
-)    
+)     """
 
 spark_submit = BashOperator(
     task_id = "spark_submit",
-    bash_command = "spark-submit --deploy-mode cluster --master yarn --class job.stat Stats.jar",
+    bash_command = "spark-submit --deploy-mode cluster --master yarn --class job.stat hdfs:///user/iabd2_group2/Stat.jar",
     dag = dag
 )
 
@@ -55,4 +55,4 @@ task2 = BashOperator(
 
  """
 #task1 >> task2 >> task3
-task1 >> extract_data >> spark_submit
+task1 >> spark_submit
