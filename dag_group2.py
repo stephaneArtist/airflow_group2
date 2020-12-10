@@ -23,11 +23,11 @@ task1 = BashOperator(
     dag = dag
 )
 
-""" extract_data = BashOperator(
+extract_data = BashOperator(
     task_id = "extract_data",
     bash_command = "python3 download-data.py",
     dag = dag
-)     """
+)    
 
 spark_submit = BashOperator(
     task_id = "spark_submit",
