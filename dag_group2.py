@@ -20,7 +20,7 @@ dag = DAG(
 
 extract_data = BashOperator(
     task_id = "extract_data",
-    bash_command = "python3 download-data.py",
+    bash_command = "python3 data.py",
     dag = dag
 )    
 
