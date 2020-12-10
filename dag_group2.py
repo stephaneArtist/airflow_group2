@@ -18,34 +18,11 @@ dag = DAG(
     default_args=default_dag_args
 )
 
-""" extract_data = BashOperator(
+extract_data = BashOperator(
     task_id = "extract_data",
     bash_command = "python3 download-data.py",
     dag = dag
-)  """
-
-extract_data1 = BashOperator(
-    task_id = "extract_data1",
-    bash_command = "python3 --version",
-    dag = dag
-) 
-
-extract_data2 = BashOperator(
-    task_id = "extract_data2",
-    bash_command = "python --version",
-    dag = dag
-)  
-
-extract_data3 = BashOperator(
-    task_id = "extract_data3",
-    bash_command = "python --help",
-    dag = dag
-)  
-""" extract_data = PythonOperator(
-    task_id = "extract_data",
-    python_callable = main,
-    dag = dag
-)  """ 
+)    
 
 spark_submit = BashOperator(
     task_id = "spark_submit",
@@ -53,7 +30,13 @@ spark_submit = BashOperator(
     dag = dag
 )
 
-""" task3 = BashOperator(
+""" extract_data = PythonOperator(
+    task_id = "extract_data",
+    python_callable = main,
+    dag = dag
+) 
+
+task3 = BashOperator(
     task_id = "task3",
     bash_command = "echo hello world 3",
     dag = dag
@@ -70,5 +53,4 @@ task1 = BashOperator(
 )
  """
 #task1 >> task2 >> task3
-#extract_data >> spark_submit
-extract_data1 >> extract_data2 >> extract_data3
+extract_data >> spark_submit
