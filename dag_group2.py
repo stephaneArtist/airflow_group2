@@ -24,19 +24,19 @@ dag = DAG(
     dag = dag
 )  """
 
-extract_data = BashOperator(
+extract_data1 = BashOperator(
     task_id = "extract_data",
     bash_command = "python3 --version",
     dag = dag
 ) 
 
-extract_data = BashOperator(
+extract_data2 = BashOperator(
     task_id = "extract_data",
     bash_command = "python --version",
     dag = dag
 )  
 
-extract_data = BashOperator(
+extract_data3 = BashOperator(
     task_id = "extract_data",
     bash_command = "python --help",
     dag = dag
@@ -70,4 +70,7 @@ task1 = BashOperator(
 )
  """
 #task1 >> task2 >> task3
-extract_data >> spark_submit
+#extract_data >> spark_submit
+extract_data1
+extract_data2
+extract_data3
