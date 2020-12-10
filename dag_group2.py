@@ -18,6 +18,12 @@ dag = DAG(
     default_args=default_dag_args
 )
 
+task1 = BashOperator(
+    task_id = "task1",
+    bash_command = "echo hello world",
+    dag = dag
+)
+
 extract_data = BashOperator(
     task_id = "extract_data",
     bash_command = "python3 download-data.py",
@@ -46,11 +52,7 @@ task2 = BashOperator(
     bash_command = "echo hello world 2",
     dag = dag
 )
-task1 = BashOperator(
-    task_id = "task1",
-    bash_command = "echo hello world 1",
-    dag = dag
-)
+
  """
 #task1 >> task2 >> task3
-extract_data >> spark_submit
+task1 >> extract_data >> spark_submit
