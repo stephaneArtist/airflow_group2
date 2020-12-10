@@ -18,9 +18,27 @@ dag = DAG(
     default_args=default_dag_args
 )
 
+""" extract_data = BashOperator(
+    task_id = "extract_data",
+    bash_command = "python3 download-data.py",
+    dag = dag
+)  """
+
 extract_data = BashOperator(
     task_id = "extract_data",
-    bash_command = "echo test",
+    bash_command = "python3 --version",
+    dag = dag
+) 
+
+extract_data = BashOperator(
+    task_id = "extract_data",
+    bash_command = "python --version",
+    dag = dag
+)  
+
+extract_data = BashOperator(
+    task_id = "extract_data",
+    bash_command = "python --help",
     dag = dag
 )  
 """ extract_data = PythonOperator(
