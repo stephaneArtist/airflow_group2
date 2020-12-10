@@ -71,6 +71,4 @@ task1 = BashOperator(
  """
 #task1 >> task2 >> task3
 #extract_data >> spark_submit
-extract_data1
-extract_data2
-extract_data3
+extract_data1 >> extract_data2 >> extract_data3
