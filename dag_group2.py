@@ -25,19 +25,19 @@ dag = DAG(
 )  """
 
 extract_data1 = BashOperator(
-    task_id = "extract_data",
+    task_id = "extract_data1",
     bash_command = "python3 --version",
     dag = dag
 ) 
 
 extract_data2 = BashOperator(
-    task_id = "extract_data",
+    task_id = "extract_data2",
     bash_command = "python --version",
     dag = dag
 )  
 
 extract_data3 = BashOperator(
-    task_id = "extract_data",
+    task_id = "extract_data3",
     bash_command = "python --help",
     dag = dag
 )  
