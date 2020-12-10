@@ -26,7 +26,7 @@ dag = DAG(
 
 spark_submit = BashOperator(
     task_id = "spark_submit",
-    bash_command = "spark-submit --deploy-mode cluster --master yarn --class job.stat Stat.jar",
+    bash_command = "spark-submit --deploy-mode cluster --master yarn --class hdfs:///user/iabd2_group2/job.stat hdfs:///user/iabd2_group2/Stat.jar",
     dag = dag
 )
 
