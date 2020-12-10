@@ -20,7 +20,7 @@ dag = DAG(
 
 extract_data = BashOperator(
     task_id = "extract_data",
-    bash_command = "ls",
+    bash_command = "hdfs dfs -ls",
     dag = dag
 )  
 """ extract_data = PythonOperator(
